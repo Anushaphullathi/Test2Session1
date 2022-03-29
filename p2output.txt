@@ -1,1 +1,85 @@
+ gcc -g p2original.c
+ ./a.out
+Enter the three points of triangle
+2 
+4
+6
+8
+9
+4
+the given points forms a triangle gdb ./a.out
+GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
+Copyright (C) 2018 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./a.out...done.
+(gdb) b main
+Breakpoint 1 at 0x8c1: file p2original.c, line 32.
+(gdb) r
+Starting program: /home/runner/Test2Session1-6/a.out 
+warning: Error disabling address space randomization: Operation not permitted
 
+Breakpoint 1, main () at p2original.c:32
+32  {
+(gdb) n
+34    input_triangle(&x1,&y1,&x2,&y2,&x3,&y3);
+(gdb) s
+input_triangle (x1=0x7ffc0c1c987c, y1=0x7ffc0c1c9880, x2=0x7ffc0c1c9884, 
+    y2=0x7ffc0c1c9888, x3=0x7ffc0c1c988c, y3=0x7ffc0c1c9890) at p2original.c:4
+4     printf("Enter the three points of triangle\n");
+(gdb) n
+Enter the three points of triangle
+5     scanf("%f %f %f %f %f %f",x1,y1,x2,y2,x3,y3);
+(gdb) n
+2
+4
+6
+8
+9
+4
+6   }
+(gdb) n
+main () at p2original.c:35
+35    is_triangle(x1,y1,x2,y2,x3,y3);
+(gdb) s
+is_triangle (x1=2, y1=4, x2=6, y2=8, x3=9, y3=4) at p2original.c:10
+10    area=0.5*(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2));
+(gdb) n
+11    if(area==0)
+(gdb) n
+17      return 0;
+(gdb) n
+19  }
+(gdb) n
+main () at p2original.c:36
+36    output(x1,y1,x2,y2,x3,y3,istriangle);
+(gdb) s
+output (x1=2, y1=4, x2=6, y2=8, x3=9, y3=4, istriangle=0) at p2original.c:22
+22    if(istriangle==1)
+(gdb) n
+26    if(istriangle==0)
+(gdb) n
+28      printf("the given points forms a triangle");
+(gdb) n
+30  }
+(gdb) n
+main () at p2original.c:37
+37    return 0;
+(gdb) n
+38  }
+(gdb) q
+A debugging session is active.
+
+    Inferior 1 [process 2212] will be killed.
+
+Quit anyway? (y or n) y
