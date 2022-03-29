@@ -1,16 +1,13 @@
- gcc -g p1original.c
-/tmp/ccmIGzbt.o: In function `find_distance':
-/home/runner/Test2Session1-9/p1original.c:10: undefined reference to `sqrt'
-collect2: error: ld returned 1 exit status
-exit status 1
+
+ gcc -g p2original.c
  gcc -g p1original.c -lm
  ./a.out
-Enter the value of x1,y1,x2 and y2
+Enter the points to find distance:
 2
-3
 4
 6
-the distance b/w two points 2.000000 3.000000 and 4.000000 6.000000  is 3.605551: gdb a.out
+8
+the distance between 2.000000 4.000000 6.000000 8.000000 is 5.656854 gdb ./a.out
 GNU gdb (Ubuntu 8.1.1-0ubuntu1) 8.1.1
 Copyright (C) 2018 Free Software Foundation, Inc.
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
@@ -25,55 +22,57 @@ Find the GDB manual and other documentation resources online at:
 <http://www.gnu.org/software/gdb/documentation/>.
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
-Reading symbols from a.out...done.
+Reading symbols from ./a.out...done.
 (gdb) b main
-Breakpoint 1 at 0x8f0: file p1original.c, line 17.
+Breakpoint 1 at 0x932: file p1original.c, line 18.
 (gdb) r
-Starting program: /home/runner/Test2Session1-9/a.out 
+Starting program: /home/runner/Test2Session1-6/a.out 
 warning: Error disabling address space randomization: Operation not permitted
 
-Breakpoint 1, main () at p1original.c:17
-17  {
+Breakpoint 1, main () at p1original.c:18
+18  {
 (gdb) n
-19    input(&a,&b,&c,&d);
+20    input(&x1,&y1,&x2,&y2);
 (gdb) s
-input (x1=0x7ffe423e47c4, y1=0x7ffe423e47c8, x2=0x7ffe423e47cc, 
-    y2=0x7ffe423e47d0) at p1original.c:5
-5     printf("Enter the value of x1,y1,x2 and y2\n");
+input (x1=0x7ffcb9bc53a4, y1=0x7ffcb9bc53a8, x2=0x7ffcb9bc53ac, 
+    y2=0x7ffcb9bc53b0) at p1original.c:5
+5     printf("Enter the points to find distance:\n");
 (gdb) n
-Enter the value of x1,y1,x2 and y2
+Enter the points to find distance:
 6     scanf("%f %f %f %f",x1,y1,x2,y2);
 (gdb) n
-2
-3
-4
-5
+2 
+4 
+6
+8
 7   }
 (gdb) n
-main () at p1original.c:20
-20    find_distance(a,b,c,d,&distance);
-(gdb) s
-find_distance (x1=2, y1=3, x2=4, y2=5, area=0x7ffe423e47d4)
-    at p1original.c:10
-10    *area=sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
-(gdb) n
-11  }
-(gdb) n
 main () at p1original.c:21
-21    output(a,b,c,d,distance);
+21    find_distance(x1,y1,x2,y2,&area);
 (gdb) s
-output (x1=2, y1=3, x2=4, y2=5, area=2.82842708)
-    at p1original.c:14
-14  printf("the distance b/w two points %f %f and %f %f  is %f:",x1,y1,x2,y2,area);
+find_distance (x1=2, y1=4, x2=6, y2=8, area=0x7ffcb9bc53b4) at p1original.c:10
+10    *area=sqrt(pow(x2 - x1, 2)
 (gdb) n
-15  }
+11                  + pow(y2 - y1, 2) * 1.0);
+(gdb) n
+10    *area=sqrt(pow(x2 - x1, 2)
+(gdb) n
+12  }
 (gdb) n
 main () at p1original.c:22
-22    return 0;
+22    output(x1,y1,x2,y2,area);
+(gdb) s
+output (x1=2, y1=4, x2=6, y2=8, area=5.65685415) at p1original.c:15
+15    printf("the distance between %f %f %f %f is %f",x1,y1,x2,y2,area);
 (gdb) n
-23  }(gdb) q
+16  }
+(gdb) n
+main () at p1original.c:23
+23    return 0;
+(gdb) n
+24  }(gdb) q
 A debugging session is active.
 
-    Inferior 1 [process 3590] will be killed.
+    Inferior 1 [process 1424] will be killed.
 
-Quit anyway? (y or n) y
+Quit anyway? (y or n) 
